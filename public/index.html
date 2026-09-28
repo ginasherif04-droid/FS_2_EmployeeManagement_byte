@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maison — Employee Management</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LOGIN -->
+
+    <div id="login-section" class="login-page">
+
+        <div class="login-decoration decoration-one"></div>
+        <div class="login-decoration decoration-two"></div>
+
+        <div class="login-card">
+
+            <div class="brand">
+                <div class="brand-mark">M</div>
+
+                <div>
+                    <h2>Maison</h2>
+                    <span>EMPLOYEE MANAGEMENT</span>
+                </div>
+            </div>
+
+            <div class="login-heading">
+                <span class="eyebrow">WELCOME BACK</span>
+
+                <h1>Good to see you.</h1>
+
+                <p>
+                    Sign in to your workspace and manage
+                    your team with ease.
+                </p>
+            </div>
+
+            <div class="input-group">
+                <label>Email address</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="admin@example.com"
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                >
+            </div>
+
+            <button class="main-button" onclick="login()">
+                Sign in
+                <span>→</span>
+            </button>
+
+            <p id="login-message" class="error-message"></p>
+
+            <div class="login-bottom">
+                <span></span>
+                <p>Private workspace · 2026</p>
+                <span></span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <div id="employee-section" class="dashboard" style="display: none;">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="brand sidebar-brand">
+
+                <div class="brand-mark">M</div>
+
+                <div>
+                    <h2>Maison</h2>
+                    <span>WORKSPACE</span>
+                </div>
+
+            </div>
+
+            <div class="nav-label">
+                MAIN MENU
+            </div>
+
+            <nav>
+
+                <a class="nav-item active">
+                    <span>⌂</span>
+                    Overview
+                </a>
+
+                <a class="nav-item">
+                    <span>♧</span>
+                    Employees
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="admin-profile">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+                <button class="logout-button" onclick="logout()">
+                    Sign out
+                    <span>↗</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="main-content">
+
+            <header class="top-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        YOUR WORKSPACE
+                    </span>
+
+                    <h1>Employee Overview</h1>
+
+                    <p>
+                        Keep your team organized, connected and thriving.
+                    </p>
+
+                </div>
+
+                <button class="add-button" onclick="openModal()">
+                    <span>+</span>
+                    Add employee
+                </button>
+
+            </header>
+
+
+            <!-- STATS -->
+
+            <section class="stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-symbol">
+                        ♡
+                    </div>
+
+                    <div>
+                        <span>Total team</span>
+                        <strong id="total-employees">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-symbol">
+                        ◇
+                    </div>
+
+                    <div>
+                        <span>Departments</span>
+                        <strong id="total-departments">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card status-card">
+
+                    <div class="status-dot"></div>
+
+                    <div>
+                        <span>Workspace</span>
+                        <strong>Active</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- EMPLOYEES -->
+
+            <section class="employees-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            TEAM DIRECTORY
+                        </span>
+
+                        <h2>Your people</h2>
+
+                        <p>
+                            A little overview of everyone on your team.
+                        </p>
+                    </div>
+
+                    <div
+                        class="employee-count"
+                        id="employee-count"
+                    >
+                        0 employees
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="employee-list"
+                    class="employee-grid"
+                ></div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ADD / EDIT MODAL -->
+
+    <div id="employee-modal" class="modal">
+
+        <div class="modal-card">
+
+            <div class="modal-top">
+
+                <div>
+                    <span class="eyebrow">
+                        TEAM DIRECTORY
+                    </span>
+
+                    <h2 id="modal-title">
+                        Add employee
+                    </h2>
+
+                    <p>
+                        Tell us a little about your team member.
+                    </p>
+                </div>
+
+                <button
+                    class="close-button"
+                    onclick="closeModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Full name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Gina Sherif"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="employeeEmail"
+                        placeholder="gina@example.com"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label>Department</label>
+
+                    <input
+                        type="text"
+                        id="department"
+                        placeholder="Engineering"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label>Position</label>
+
+                    <input
+                        type="text"
+                        id="position"
+                        placeholder="Software Engineer"
+                    >
+                </div>
+
+
+                <div class="input-group full-width">
+                    <label>Phone</label>
+
+                    <input
+                        type="text"
+                        id="phone"
+                        placeholder="01012345678"
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="cancel-button"
+                    onclick="closeModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="main-button save-button"
+                    onclick="saveEmployee()"
+                >
+                    Save employee
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
