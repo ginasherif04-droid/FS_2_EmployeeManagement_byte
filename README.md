@@ -502,3 +502,17 @@ Implemented requirements:
 ## Author
 
 Developed as part of the **ArithMatrix Virtual Internship Program (AVIP) 2026**.
+
+# Screenshots
+
+### Login Page
+![Login Page](screenshots/login%20image.jpeg)
+
+### Employee Dashboard
+![Employee Dashboard](screenshots/Employee%20Dashboard.jpeg)
+
+### Add / Edit Employee
+![Add Edit Employee](screenshots/Add%20%20Edit%20Employee.jpeg)
+
+### Edited Employee
+![Edited Employee](screenshots/Edited.jpeg)
